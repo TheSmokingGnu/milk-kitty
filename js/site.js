@@ -88,3 +88,28 @@ function cleanDates(data) {
 	})
 return data
 }
+
+function createJsDates(data) {
+  return data.map(function(value) {
+    if(value.date) {
+    var dateArray = value.date.split('/');
+    console.log(dateArray);
+    value.date = new Date(+dateArray[2], +dateArray[1] - 1, +dateArray[0]);
+    console.log(value.date);
+  }
+    return value;
+  });
+}
+
+function sortData(data) {
+  return data.sort(function(a, b) {
+    return a.date > b.date
+  });
+}
+
+function formatDate(data) {
+  return data.map(function(value) {
+    value.date = value.date.toString().substr(0, 15);
+    return value;
+  });
+}
