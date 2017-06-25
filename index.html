@@ -20,11 +20,15 @@
     
 		<div id="articleTable"></div>
 
+    <div>
+      <h2 id='total'></h2>
+    </div> 
+
 	</div><!-- end wrapper -->
 
 	<script id="articleTable" type="text/html">
 		<table>
-			<tr><th class="date">Date</th><th class="">Who paid what</th><th>money</th></tr>
+			<tr><th class="date">date</th><th class="">ingoing / outgoing</th><th>money</th></tr>
 		  {{#rows}}
 		  		<tr class="{{rowNumber}}">
               <td class="date">{{date}}</td>
@@ -49,11 +53,11 @@
       Sheetsee.makeTable(formattedDate, "#articleTable")
       Sheetsee.initiateTableFilter(formattedDate, "#articleSearch", "#articleTable")
 
-      $(document).on("click", ".tag", function(event){
-        var tag = $(event.target).text()
-        var tagFilter = getTagMatches(gData, tag)
-        Sheetsee.makeTable(tagFilter.reverse(), "#articleTable")
-      })
+      var moneyLeft = data.reduce(function(acc, value) {
+        return acc + +value.amount;  
+      }, 0);
+
+      $('#total').text('Money Left: £' + Math.round(moneyLeft *100)/100);
     }
   </script>
 
