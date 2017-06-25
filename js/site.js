@@ -78,7 +78,7 @@ function pageTitle(data) {
 	var contents = ich.title({
   	numArticles: amount
 	})
-$('#title').html(contents)
+$('#title').html('Milk Log')
 }
 
 // takes off the time from the dates
